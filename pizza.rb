@@ -4,6 +4,10 @@ class Pizza
   def initialize(toppings=[Topping.new('cheese')])
     @toppings = toppings
   end
+
+  def vegetarian?
+    @toppings.all? { |top| top.vegetarian }
+  end
 end
 
 class Topping
