@@ -41,6 +41,16 @@ describe Pizza do
       expect(pizza_false.vegetarian?).to eq(false)
     end
   end
+
+  describe '.add_topping' do
+    it 'adds another topping to the toppings array' do
+      pizza = Pizza.new
+      topping = Topping.new('chicken')
+      pizza.add_topping(topping)
+
+      expect(pizza.toppings.include?(topping)).to eq(true)
+    end
+  end
 end
 
 describe Topping do
