@@ -5,7 +5,7 @@ describe Pizza do
     expect(Pizza).to be_a(Class)
   end
 
-  describe '.initialize' do
+  describe '#initialize' do
     it 'records all of the toppings' do
       toppings = [
         Topping.new('mushrooms', vegetarian: true),
@@ -24,7 +24,7 @@ describe Pizza do
     end
   end
 
-  describe '.vegetarian?' do
+  describe '#vegetarian?' do
     it 'returns true if all of the toppings on the pizza are vegetarian' do
       toppings_false = [
         Topping.new('mushrooms', vegetarian: true),
@@ -42,13 +42,24 @@ describe Pizza do
     end
   end
 
-  describe '.add_topping' do
+  describe '#add_topping' do
     it 'adds another topping to the toppings array' do
       pizza = Pizza.new
       topping = Topping.new('chicken')
       pizza.add_topping(topping)
 
       expect(pizza.toppings.include?(topping)).to eq(true)
+    end
+  end
+
+  describe '#deliver!' do
+    pizza = Pizza.new
+    pizza.deliver!
+    it 'marks a @delivery_time attribute which is a Time object' do
+      expect(pizza.delivery_time.class).to eq(Time)
+    end
+    it 'returns a delivery time which is greater than what the current time is' do
+      expect(pizza.delivery_time).to be > (Time.now)
     end
   end
 end
@@ -58,7 +69,7 @@ describe Topping do
     expect(Topping).to be_a(Class)
   end
 
-  describe '.initialize' do
+  describe '#initialize' do
     it 'sets the name of the topping' do
       topping = Topping.new('olives')
 

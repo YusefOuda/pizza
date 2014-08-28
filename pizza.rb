@@ -1,5 +1,5 @@
 class Pizza
-  attr_accessor :toppings
+  attr_accessor :toppings, :delivery_time
 
   def initialize(toppings=[Topping.new('cheese')])
     @toppings = toppings
@@ -12,18 +12,15 @@ class Pizza
   def add_topping(topping)
     @toppings.push(topping)
   end
+
+  def deliver!
+    @delivery_time = Time.now + 30*60
+  end
 end
 
 class Topping
   attr_accessor :name, :vegetarian
 
-  # Instantiate a new topping.
-  #
-  # name       - The String name of the topping.
-  # vegetarian - The Boolean indicating whether or not the topping is
-  #              vegetarian.
-  #
-  # Returns the new Topping.
   def initialize(name, vegetarian: false)
     @name = name
     @vegetarian = vegetarian
