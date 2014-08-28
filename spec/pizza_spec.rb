@@ -62,6 +62,15 @@ describe Pizza do
       expect(pizza.delivery_time).to be > (Time.now)
     end
   end
+
+  describe '#late?' do
+    it 'returns true if the current time is later than the delivery time' do
+      pizza = Pizza.new
+      pizza.deliver!
+
+      expect(pizza.late?).to eq(false)
+    end
+  end
 end
 
 describe Topping do
